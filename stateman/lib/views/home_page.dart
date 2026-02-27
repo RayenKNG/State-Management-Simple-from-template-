@@ -13,9 +13,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // Scaffold dibungkus Consumer biar layarnya ngedengerin perubahan dari CounterModel
-    return Counter<CounterModel>(
-      builder: (context, value, child) {
+    // Sesuai PDF, bungkus Scaffold menggunakan Builder
+    return Builder(
+      builder: (context) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -27,33 +27,13 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 const Text('Angka saat ini:'),
                 Text(
-                  value.angka.toString(), // Ngambil angka dari Provider
+                  '0', // Nanti ini kita ubah di step selanjutnya
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
             ),
           ),
-          // Bikin 2 tombol (Tambah dan Kurang)
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                onPressed: () {
-                  value.decrement(); // Panggil fungsi kurang
-                },
-                tooltip: 'Kurang',
-                child: const Icon(Icons.remove),
-              ),
-              const SizedBox(width: 10), // Jarak antar tombol
-              FloatingActionButton(
-                onPressed: () {
-                  value.increment(); // Panggil fungsi tambah
-                },
-                tooltip: 'Tambah',
-                child: const Icon(Icons.add),
-              ),
-            ],
-          ),
+          // Nanti tombol kita tambahin di sini
         );
       },
     );
